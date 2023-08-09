@@ -40,7 +40,7 @@ const Index = () => {
 
     useEffect(() => {
         dispatch(getProduct(`?page=1`));
-    }, );
+    },[resLoading]);
 
     const delay = (callback) => {
         clearTimeout(typingTimeout);
