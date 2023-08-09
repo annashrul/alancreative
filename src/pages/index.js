@@ -37,10 +37,15 @@ const Index = () => {
     const resPagination = useSelector(
         (state) => state.productReducer.pagination
     );
+    const [mount, setMount] = useState(false)
 
     useEffect(() => {
-        dispatch(getProduct(`?page=1`));
-    },[resLoading]);
+        if(!mount) {
+            setMount(true);
+            dispatch(getProduct(`?page=1`));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[mount]);
 
     const delay = (callback) => {
         clearTimeout(typingTimeout);
