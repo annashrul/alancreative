@@ -12,7 +12,6 @@ import {
     Card,
     Button,
     Form,
-    Select,
     Empty,
     Avatar, Typography,Table,  message
 } from "antd";
@@ -84,12 +83,15 @@ const Index = () => {
         setRefreshCart([])
     }
     const [form] = Form.useForm();
-    const handleSubmit=(e)=>{}
+    const handleSubmit=(e)=>{
+
+    }
     const componentRef = useRef();
 
 
     return (
         <React.Fragment>
+            {refreshCart.length>0?'':''}
             <Row>
                 <Col md={24} style={{backgroundColor:"#00ACEE",padding:"20px 20px 20px 50px"}}>
                     <img alt='asdasd'  style={{height:"50px"}} src='https://alan.co.id/wp-content/uploads/2022/09/Logo-Alan-Creative-1536x360-1.png'/>

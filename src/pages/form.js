@@ -24,12 +24,7 @@ const FormComponent = ({ isModal, ok, cancel, data, where }) => {
   const dispatch = useDispatch();
   const loadingPost = useSelector((state) => state.productReducer.loadingPost);
 
-  useEffect(() => {
-    if (data !== undefined) {
-      form.setFieldsValue({ price: data.price });
-      form.setFieldsValue({ name: data.name });
-    }
-  }, []);
+
 
   const handleSubmit = async (e) => {
     Object.assign(e, { price: rmComma(e.price) });
