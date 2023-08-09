@@ -11,7 +11,7 @@ import {
 import {
   CloudUploadOutlined,
 } from "@ant-design/icons";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {convertBase64, currency, getPropsUpload, rmComma} from "../helper";
 import { useDispatch, useSelector } from "react-redux";
 import { storeProduct } from "../redux/actions/product.action";
@@ -23,9 +23,6 @@ const FormComponent = ({ isModal, ok, cancel, data, where }) => {
   const [fileList, setFileList] = useState([]);
   const dispatch = useDispatch();
   const loadingPost = useSelector((state) => state.productReducer.loadingPost);
-
-
-
   const handleSubmit = async (e) => {
     Object.assign(e, { price: rmComma(e.price) });
 
@@ -39,8 +36,6 @@ const FormComponent = ({ isModal, ok, cancel, data, where }) => {
         })
     );
   };
-
-  console.log(fileList.length)
   return (
     <Modal
       centered

@@ -40,7 +40,7 @@ const Index = () => {
 
     useEffect(() => {
         dispatch(getProduct(`?page=1`));
-    }, []);
+    }, );
 
     const delay = (callback) => {
         clearTimeout(typingTimeout);
@@ -153,7 +153,7 @@ const Index = () => {
                                                         // height:"100px"
                                                         // width: 240,
                                                     }}
-                                                    cover={<img alt='asdasd' style={{height:"130px"}} alt="example" src={`${AUTH.IMG}/${res.image}`} onError={handleOnError} />}
+                                                    cover={<img style={{height:"130px"}} alt="example" src={`${AUTH.IMG}/${res.image}`} onError={handleOnError} />}
                                                 >
                                                     <Row>
                                                         <Col md={24} style={{textAlign:"center",width:"100%"}}>
