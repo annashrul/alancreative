@@ -1,7 +1,7 @@
 import { PRODUCT, AUTH } from "../type";
 import axios from "axios";
 
-import { Message, notification } from "antd";
+import { notification } from "antd";
 export const setData = (data) => {
   return {
     type: PRODUCT.GET,

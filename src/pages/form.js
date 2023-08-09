@@ -3,32 +3,24 @@ import {
   Col,
   Row,
   Input,
-  Message,
   Upload,
   Modal,
   Form,
-  Tabs,
-  Spin, Space,
+  Spin,
 } from "antd";
 import {
   CloudUploadOutlined,
-  InfoCircleOutlined,
-  InboxOutlined,
-  SolutionOutlined,
-  KeyOutlined,
-  LockOutlined,
 } from "@ant-design/icons";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {convertBase64, currency, getPropsUpload, rmComma} from "../helper";
 import { useDispatch, useSelector } from "react-redux";
-import { putProduct, storeProduct } from "../redux/actions/product.action";
+import { storeProduct } from "../redux/actions/product.action";
 
 const { Dragger } = Upload;
 
 const FormComponent = ({ isModal, ok, cancel, data, where }) => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const loadingPost = useSelector((state) => state.productReducer.loadingPost);
 
@@ -65,7 +57,7 @@ const FormComponent = ({ isModal, ok, cancel, data, where }) => {
       maskClosable={false}
       footer={null}
     >
-      <Spin spinning={loading}>
+      <Spin spinning={loadingPost}>
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <Row gutter={6}>
             <Col xs={24} sm={24} md={24}>

@@ -1,58 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    EditOutlined,
-    EllipsisOutlined,
-    SettingOutlined,
-    InboxOutlined,
-    DeleteOutlined,
-    PlusOutlined, CloudUploadOutlined
+    PlusOutlined
 } from "@ant-design/icons";
 import ReactToPrint from 'react-to-print';
 import {
     Modal,
-    Popconfirm,
     Col,
-    Tooltip,
     Row,
-    Tag,
-    Upload,
     Input,
     Card,
-    List,
     Button,
     Form,
     Select,
-    Skeleton,
     Empty,
-    Space,
-    Avatar, Typography, Divider, Table, Spin, message
-    // Pagination,
+    Avatar, Typography,Table,  message
 } from "antd";
-// import "antd/dist/antd.css";
-import {currency, generateNo, getPropsUpload, handleOnError, rmComma} from "../helper";
-import { deleteProduct, getProduct } from "../redux/actions/product.action";
-import {productReducer} from "../redux/reducers/product.reducer";
+import {currency, generateNo, handleOnError, rmComma} from "../helper";
+import { getProduct } from "../redux/actions/product.action";
 import FormComponent from "./form";
 import {AUTH} from "../redux/type";
-// import FormComponent from "./form";
 const { Title } = Typography;
 
 const Search = Input.Search;
-const { Option } = Select;
-const { Dragger } = Upload;
-const { Meta } = Card;
-
-const dummyData = ["a", "a", "a", "a"];
-const msgInput = "Tidak Boleh Kosong";
 const Index = () => {
     const [showForm, setShowForm] = useState(false);
     const [showDetail, setShowDetail] = useState(false);
     const [idx, setIdx] = useState(undefined);
     const [refreshCart, setRefreshCart] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0);
-    const [page, setPage] = useState(1 );
-    const [name, setName] = useState("");
     const [cart, setCart] = useState([]);
     const [activeTab, setActiveTab] = useState(1);
     const dispatch = useDispatch();
@@ -80,7 +56,7 @@ const Index = () => {
     const showTotal = (total) => `Total ${total} items`;
 
     const handleSearch=(val)=>{
-        let where=`?page=${page}`;
+        let where=`?page=1`;
         if(val!==''){
             where+=`&name=${val}`
         }
@@ -116,7 +92,7 @@ const Index = () => {
         <React.Fragment>
             <Row>
                 <Col md={24} style={{backgroundColor:"#00ACEE",padding:"20px 20px 20px 50px"}}>
-                    <img style={{height:"50px"}} src='https://alan.co.id/wp-content/uploads/2022/09/Logo-Alan-Creative-1536x360-1.png'/>
+                    <img alt='asdasd'  style={{height:"50px"}} src='https://alan.co.id/wp-content/uploads/2022/09/Logo-Alan-Creative-1536x360-1.png'/>
                 </Col>
                 <Col md={24} style={{padding:"20px 20px 20px 50px",boxShadow: '-1px 10px 5px 0px rgba(218,218,218,0.75)'}}>
                     <Button onClick={()=>setActiveTab(1)} style={{color:`${activeTab===1?'#00ACEE':'black'}`,borderBottom:`2px solid ${activeTab===1?'#00ACEE':'white'}`,borderTop:"none",borderLeft:"none",borderRight:"none",fontWeight:"bold"}}>Food</Button>
@@ -149,7 +125,7 @@ const Index = () => {
                                 {title:"No",dataIndex:"no",key:"no",render:(val,rec,i)=>generateNo(i,resPagination.current_page,10)},
                                 {title:"Nama",dataIndex:"name",key:"name"},
                                 {title:"Foto",dataIndex:"image",key:"image",render:(val)=>{
-                                        return <img onError={handleOnError} src={`${AUTH.IMG}/${val}`} style={{height:"50px",width:"50px"}}/>
+                                        return <img alt='asdasd' onError={handleOnError} src={`${AUTH.IMG}/${val}`} style={{height:"50px",width:"50px"}}/>
                                     }},
                                 {title:"Harga",dataIndex:"price",key:"price",render:(val)=>"Rp. "+currency(val)},
                             ]}/>
@@ -175,7 +151,7 @@ const Index = () => {
                                                         // height:"100px"
                                                         // width: 240,
                                                     }}
-                                                    cover={<img style={{height:"130px"}} alt="example" src={`${AUTH.IMG}/${res.image}`} onError={handleOnError} />}
+                                                    cover={<img alt='asdasd' style={{height:"130px"}} alt="example" src={`${AUTH.IMG}/${res.image}`} onError={handleOnError} />}
                                                 >
                                                     <Row>
                                                         <Col md={24} style={{textAlign:"center",width:"100%"}}>
@@ -199,7 +175,7 @@ const Index = () => {
                                         cart.length>0?cart.map((res,i)=>{
                                             return   <Row justify={"space-between"} gutter={20} key={i} style={{marginBottom:"10px"}}>
                                                 <Col>
-                                                    <img src={`${AUTH.IMG}/${res.image}`} onError={handleOnError} style={{height:"70px",width:"70px"}}/>
+                                                    <img alt='asdasd' src={`${AUTH.IMG}/${res.image}`} onError={handleOnError} style={{height:"70px",width:"70px"}}/>
                                                     &nbsp;&nbsp;&nbsp;{res.name}
                                                 </Col>
                                                 <Col style={{alignItems:"center",display:"flex"}}>
@@ -285,7 +261,7 @@ const Index = () => {
                                 {title:"#",dataIndex:"id", render:(val,rec,i)=>i+1},
                                 {title:"Nama",dataIndex:"name",key:"name"},
                                 {title:"Foto",dataIndex:"image",key:"image",render:(val)=>{
-                                        return <img onError={handleOnError} src={`${AUTH.IMG}/${val}`} style={{height:"50px",width:"50px"}}/>
+                                        return <img alt='asdasd' onError={handleOnError} src={`${AUTH.IMG}/${val}`} style={{height:"50px",width:"50px"}}/>
                                     }},
                                 {title:"Harga",dataIndex:"price",key:"price",render:(val)=>"Rp. "+currency(val)},
                             ]}/>
@@ -350,7 +326,7 @@ const Index = () => {
                         setShowForm(false);
                     }}
                     data={idx !== undefined ? resData[idx] : undefined}
-                    where={`?page=1&perpage=${page}${name}`}
+                    where={``}
                 />
             )}
         </React.Fragment>
