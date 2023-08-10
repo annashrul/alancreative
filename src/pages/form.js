@@ -14,7 +14,8 @@ import {
 import React, { useState} from "react";
 import {convertBase64, currency, getPropsUpload, rmComma} from "../helper";
 import { useDispatch, useSelector } from "react-redux";
-import { storeProduct } from "../redux/actions/product.action";
+// import { storeProduct } from "../redux/actions/product.action";
+import {AUTH} from "../redux/type";
 
 const { Dragger } = Upload;
 
@@ -28,13 +29,29 @@ const FormComponent = ({ isModal, ok, cancel, data, where }) => {
 
     if (fileList[0] !== undefined) {
       const img = await convertBase64(fileList[0]);
-      Object.assign(e, { image: img });
+      // Object.assign(e, { image: img });
     }
-    dispatch(
-        storeProduct(e, where, () => {
-          ok();
+    fetch(AUTH.URL+'product', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data",data);
+          // Handle data
         })
-    );
+        .catch((err) => {
+          console.log("err",err);
+        });
+
+    // dispatch(
+    //     storeProduct(e, where, () => {
+    //       ok();
+    //     })
+    // );
   };
   return (
     <Modal

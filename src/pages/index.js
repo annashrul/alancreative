@@ -132,7 +132,7 @@ const Index = () => {
                                 {title:"No",dataIndex:"no",key:"no",render:(val,rec,i)=>generateNo(i,resPagination.current_page,10)},
                                 {title:"Nama",dataIndex:"name",key:"name"},
                                 {title:"Foto",dataIndex:"image",key:"image",render:(val)=>{
-                                        return <img alt='asdasd' onError={handleOnError} src={`${AUTH.IMG}/${val}`} style={{height:"50px",width:"50px"}}/>
+                                        return <img alt={`${AUTH.IMG}/${val}`} onError={handleOnError} src={`${AUTH.IMG}/${val}`} style={{height:"50px",width:"50px"}}/>
                                     }},
                                 {title:"Harga",dataIndex:"price",key:"price",render:(val)=>"Rp. "+currency(val)},
                             ]}/>

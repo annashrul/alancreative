@@ -59,8 +59,14 @@ export const getProduct = (where = "") => {
 export const storeProduct = (data, where, callback) => {
   return (dispatch) => {
     dispatch(setLoadingPost(true));
+    let axiosConfig = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    };
     axios
-      .post(AUTH.URL + "product", data)
+      .post(AUTH.URL + "product", {"body":data},axiosConfig)
       .then(function (response) {
         dispatch(getProduct(where));
         dispatch(setLoadingPost(false));
